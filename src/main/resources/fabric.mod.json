@@ -2,8 +2,8 @@
 	"schemaVersion": 1,
 	"id": "combinedpacks",
 	"version": "${version}",
-	"name": "Combined Resource Packs",
-	"description": "Detects subfolders in resourcepacks and treats them as combined packs.",
+	"name": "ResBundler",
+	"description": "ResBundler groups resource packs into folders and lets you control precise load order with a simple priority UI.",
 	"authors": [
 		"Me"
 	],

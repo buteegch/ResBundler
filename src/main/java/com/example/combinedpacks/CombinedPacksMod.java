@@ -10,6 +10,6 @@ public class CombinedPacksMod implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		LOGGER.info("Combined Packs Mod initialized");
+		LOGGER.info("ResBundler initialized");
 	}
 }

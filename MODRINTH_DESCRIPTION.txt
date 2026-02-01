@@ -1,8 +1,8 @@
-# Combined Resource Packs
+# ResBundler
 
 **Organize your resource packs into folders and manage their load order with granular precision!**
 
-Combined Resource Packs (formerly referenced as ResBundler) is a quality-of-life mod designed for players who love customizing their game but hate the clutter of having dozens of individual packs in their list. This mod allows you to group multiple resource packs into subfolders within your standard `resourcepacks` directory, treating each folder as a single, unified entry in the Minecraft resource pack selection screen.
+ResBundler is a quality-of-life mod designed for players who love customizing their game but hate the clutter of having dozens of individual packs in their list. This mod allows you to group multiple resource packs into subfolders within your standard `resourcepacks` directory, treating each folder as a single, unified entry in the Minecraft resource pack selection screen.
 
 ## ✨ Key Features
 
@@ -31,8 +31,8 @@ This mod requires the following dependencies to function:
 **To Install:**
 1.  Download the `.jar` file.
 2.  Make sure you have Fabric API and Cloth Config API installed in your `mods` folder.
-3.  Drop `combinedpacks-x.x.x.jar` into your `mods` folder.
+3.  Drop `resbundler-x.x.x.jar` into your `mods` folder.
 4.  Launch Minecraft and start organizing!
 
 ## 💡 Why use this?
-If you use many small "tweak" packs—like a custom crosshair, a dark mode UI, and a specific sound pack—your resource pack list can quickly become unmanageable. With Combined Resource Packs, you can bundle all those tweaks into a single "Tweaks" folder. They stay separate on your disk (making them easy to update individually) but act as one unit in-game. Plus, with the priority system, you ensure your dark mode always overlays correctly without manually merging zip files!
+If you use many small "tweak" packs—like a custom crosshair, a dark mode UI, and a specific sound pack—your resource pack list can quickly become unmanageable. With ResBundler, you can bundle all those tweaks into a single "Tweaks" folder. They stay separate on your disk (making them easy to update individually) but act as one unit in-game. Plus, with the priority system, you ensure your dark mode always overlays correctly without manually merging zip files!

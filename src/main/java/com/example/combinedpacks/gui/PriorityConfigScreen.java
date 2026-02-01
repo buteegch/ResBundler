@@ -25,7 +25,7 @@ public class PriorityConfigScreen {
     public static Screen createScreen(Screen parent) {
         ConfigBuilder builder = ConfigBuilder.create()
                 .setParentScreen(parent)
-                .setTitle(Text.literal("Combined Packs Priorities"));
+                .setTitle(Text.literal("ResBundler Priorities"));
         
         builder.setSavingRunnable(() -> {
             PackPriorityConfig.getInstance().save();
