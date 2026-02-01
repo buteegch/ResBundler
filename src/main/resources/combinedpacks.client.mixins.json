@@ -1,0 +1,15 @@
+{
+	"required": true,
+	"package": "com.example.combinedpacks.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [
+		"PackScreenMixin",
+		"ScreenAccessor"
+	],
+	"client": [
+        "PackScreenMixin"
+    ],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

@@ -1,0 +1,35 @@
+{
+	"schemaVersion": 1,
+	"id": "combinedpacks",
+	"version": "${version}",
+	"name": "Combined Resource Packs",
+	"description": "Detects subfolders in resourcepacks and treats them as combined packs.",
+	"authors": [
+		"Me"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/combinedpacks/icon.png",
+	"accessWidener": "combinedpacks.accesswidener",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.example.combinedpacks.CombinedPacksMod"
+		]
+	},
+	"mixins": [
+		"combinedpacks.mixins.json",
+        {
+            "config": "combinedpacks.client.mixins.json",
+            "environment": "client"
+        }
+	],
+	"depends": {
+		"fabricloader": ">=0.16.5",
+		"minecraft": "~1.21.10",
+		"java": ">=21"
+	}
+}

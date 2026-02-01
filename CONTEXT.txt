@@ -1,0 +1,56 @@
+ResBundler (Fabric 1.21.10) – Project Context
+
+What this mod does
+- Treats each folder inside the resourcepacks directory (that lacks pack.mcmeta) as a “combined” bundle containing multiple inner packs (directories with pack.mcmeta or .zip files).
+- Orders inner packs by user-assigned numeric priority; unassigned entries (0) are sorted alphabetically at the bottom.
+- Presents an in-game “Priorities” UI to edit these numbers per combined bundle.
+- Bundles Cloth Config API so users don’t need to install it separately.
+
+Runtime behavior
+- Combined bundle detection: Top-level resourcepacks subfolder is considered a combined bundle if it does not contain pack.mcmeta.
+- Inner pack filtering: Includes directories that have pack.mcmeta and .zip archives; ignores hidden names (starting with a dot).
+- Sorting rules: Lower number = higher priority. Unassigned (0) sorts last among alphabetically sorted names.
+- Resource resolution: Higher-priority packs override lower-priority entries when multiple inner packs provide the same resource.
+- Config persistence: A simple text config the mod reads and writes under the Fabric config directory.
+
+Source map (key files)
+- Entry point: [CombinedPacksMod.java](file:///D:/System/Downloads/Tempar/combined-resourcepacks/src/main/java/com/example/combinedpacks/CombinedPacksMod.java)
+- Provider: [CombinedResourcePackProvider.java](file:///D:/System/Downloads/Tempar/combined-resourcepacks/src/main/java/com/example/combinedpacks/CombinedResourcePackProvider.java)
+  - Scans resourcepacks, identifies combined bundles and their inner packs, sorts them, registers a ResourcePackProfile per combined bundle.
+- Combined pack wrapper: [CombinedResourcePack.java](file:///D:/System/Downloads/Tempar/combined-resourcepacks/src/main/java/com/example/combinedpacks/CombinedResourcePack.java)
+  - Wraps multiple inner packs; resource lookup applies priority order so higher wins.
+- Priority config: [PackPriorityConfig.java](file:///D:/System/Downloads/Tempar/combined-resourcepacks/src/main/java/com/example/combinedpacks/PackPriorityConfig.java)
+  - Map<CombinedName, Map<InnerName, Integer>> with load/save to Fabric config dir as combinedpacks_priority.txt; get/set/remove priority methods.
+- UI screen: [PriorityConfigScreen.java](file:///D:/System/Downloads/Tempar/combined-resourcepacks/src/main/java/com/example/combinedpacks/gui/PriorityConfigScreen.java)
+  - Uses Cloth Config; shows combined bundle sections and inner pack integer fields (0 unassigned).
+- Mixins:
+  - Resource Pack screen button: [PackScreenMixin.java](file:///D:/System/Downloads/Tempar/combined-resourcepacks/src/main/java/com/example/combinedpacks/mixin/PackScreenMixin.java) adds “Priorities” button to open the config UI.
+  - Common mixin config: [combinedpacks.mixins.json](file:///D:/System/Downloads/Tempar/combined-resourcepacks/src/main/resources/combinedpacks.mixins.json)
+  - Client mixin config: [combinedpacks.client.mixins.json](file:///D:/System/Downloads/Tempar/combined-resourcepacks/src/main/resources/combinedpacks.client.mixins.json)
+- Mod metadata: [fabric.mod.json](file:///D:/System/Downloads/Tempar/combined-resourcepacks/src/main/resources/fabric.mod.json)
+  - id: combinedpacks, name: ResBundler, entrypoint: com.example.combinedpacks.CombinedPacksMod, mixin configs referenced.
+
+Build & packaging
+- Gradle: [build.gradle](file:///D:/System/Downloads/Tempar/combined-resourcepacks/build.gradle), [gradle.properties](file:///D:/System/Downloads/Tempar/combined-resourcepacks/gradle.properties), [settings.gradle](file:///D:/System/Downloads/Tempar/combined-resourcepacks/settings.gradle)
+- Versions: Loom 1.11-SNAPSHOT; Gradle 8.14; Java 21; Loader 0.16.5; Minecraft 1.21.10; Yarn 1.21.10+build.2.
+- Cloth Config: me.shedaniel.cloth:cloth-config-fabric:15.0.140; included (Jar-in-Jar) in build.gradle.
+
+Config data file
+- Path: Fabric config directory (FabricLoader.getConfigDir()).
+- File name: combinedpacks_priority.txt.
+- Format: Sections by combined folder name; lines mapping inner pack name to integer priority; missing or 0 treated as unassigned.
+
+UI flow
+- Open Resource Packs screen.
+- Click “Priorities” button (top-right) to open the config screen.
+- Each combined folder lists its inner packs with integer fields.
+- Click Done to save priorities to combinedpacks_priority.txt.
+
+Operational notes
+- A folder with pack.mcmeta is treated as a normal pack; combined bundle logic applies only to folders without pack.mcmeta.
+- Inner packs must be valid and readable; invalid paths are skipped silently.
+- After changing priorities, resources can be reloaded by leaving/re-entering screen or via a reload control (future addition inside priorities UI).
+
+Future extensions for handoff
+- Add a “Reload Resources” button inside the priorities menu: either via Cloth Config’s button entry or a light client-side mixin targeting the Cloth Config screen instance to call client.reloadResources().
+- Consider per-bundle enable/disable toggles and validation of integer ranges.

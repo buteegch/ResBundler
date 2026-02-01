@@ -1,0 +1,23 @@
+# Gradle
+.gradle/
+build/
+out/
+
+# IDE / Editors
+.idea/
+.vscode/
+*.iml
+
+# OS / Misc
+.DS_Store
+Thumbs.db
+*.log
+
+# Minecraft Dev
+run/
+loom-cache/
+
+# Generated artifacts
+*.jar
+!build/libs/combinedpacks-*.jar
+
